@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo DevOps</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .message-box {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            width: 100%;
+            margin-bottom: 30px;
+            text-align: center;
+            border-left: 5px solid #3498db;
+        }
+        
+        .message-box h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        #hello-message {
+            font-size: 2.2rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 15px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #change-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        #reset-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        #language-btn {
+            background-color: #9b59b6;
+            color: white;
+        }
+        
+        .docker-info {
+            background-color: #f1f8ff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            margin-top: 20px;
+            border: 2px dashed #3498db;
+        }
+        
+        .docker-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .docker-info p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #34495e;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .step {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .step-number {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            #hello-message {
+                font-size: 1.8rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DevOps: Hola Mundo</h1>
+            <p>Aplicación web contenedorizada con Docker</p>
+        </div>
+        
+        <div class="content">
+            <div class="message-box">
+                <h2>Mensaje de Bienvenida</h2>
+                <div id="hello-message">¡Hola Mundo!</div>
+                <p id="language-info">Idioma actual: Español</p>
+            </div>
+            
+            <div class="controls">
+                <button id="change-btn">
+                    <span>🔄</span> Cambiar Mensaje
+                </button>
+                <button id="reset-btn">
+                    <span↩️</span> Reiniciar
+                </button>
+                <button id="language-btn">
+                    <span>🌐</span> Cambiar Idioma
+                </button>
+            </div>
+            
+            <div class="docker-info">
+                <h3><span>🐳</span> Información sobre Docker</h3>
+                <p>Esta aplicación web será contenedorizada usando Docker y subida a Docker Hub como parte de la práctica DevOps.</p>
+                
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-number">1</span> Crear Dockerfile
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span> Construir imagen
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span> Subir a Docker Hub
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Práctica DevOps - Aplicación Hola Mundo | HTML, CSS, JavaScript
+        </div>
+    </div>
+
+    <script>
+        // Datos de mensajes en diferentes idiomas
+        const messages = {
+            es: ["¡Hola Mundo!", "¡Bienvenidos!", "Hola desde DevOps", "¡Aprendiendo Docker!"],
+            en: ["Hello World!", "Welcome!", "Hello from DevOps", "Learning Docker!"],
+            fr: ["Bonjour le Monde!", "Bienvenue!", "Salut de DevOps", "Apprendre Docker!"],
+            de: ["Hallo Welt!", "Willkommen!", "Hallo von DevOps", "Docker lernen!"]
+        };
+        
+        // Variables de estado
+        let currentLanguage = 'es';
+        let messageIndex = 0;
+        
+        // Elementos del DOM
+        const helloMessageElement = document.getElementById('hello-message');
+        const languageInfoElement = document.getElementById('language-info');
+        const changeBtn = document.getElementById('change-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const languageBtn = document.getElementById('language-btn');
+        
+        // Función para actualizar el mensaje
+        function updateMessage() {
+            helloMessageElement.textContent = messages[currentLanguage][messageIndex];
+            languageInfoElement.textContent = `Idioma actual: ${getLanguageName(currentLanguage)}`;
+        }
+        
+        // Función para obtener el nombre del idioma
+        function getLanguageName(code) {
+            const languageNames = {
+                es: 'Español',
+                en: 'Inglés',
+                fr: 'Francés',
+                de: 'Alemán'
+            };
+            return languageNames[code];
+        }
+        
+        // Función para cambiar al siguiente mensaje
+        function changeMessage() {
+            messageIndex = (messageIndex + 1) % messages[currentLanguage].length;
+            updateMessage();
+        }
+        
+        // Función para reiniciar al mensaje original
+        function resetMessage() {
+            messageIndex = 0;
+            updateMessage();
+        }
+        
+        // Función para cambiar el idioma
+        function changeLanguage() {
+            const languages = Object.keys(messages);
+            const currentIndex = languages.indexOf(currentLanguage);
+            currentLanguage = languages[(currentIndex + 1) % languages.length];
+            messageIndex = 0;
+            updateMessage();
+        }
+        
+        // Event listeners
+        changeBtn.addEventListener('click', changeMessage);
+        resetBtn.addEventListener('click', resetMessage);
+        languageBtn.addEventListener('click', changeLanguage);
+        
+        // Inicializar la aplicación
+        updateMessage();
+        
+        // Mostrar información en consola
+        console.log("Aplicación Hola Mundo - Práctica DevOps");
+        console.log("Esta aplicación será contenedorizada con Docker");
+    </script>
+</body>
+</html>
