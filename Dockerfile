@@ -1,15 +1,7 @@
 ﻿FROM nginx:alpine
-
-# Etiquetas informativas
-LABEL maintainer="Tu Nombre <tu.email@ejemplo.com>"
-LABEL description="Aplicación web Hola Mundo para práctica DevOps"
-LABEL version="1.0"
-
-# Copiar los archivos de la aplicación al contenedor
+LABEL maintainer="Tu Nombre"
 COPY index.html /usr/share/nginx/html/
-
-# Exponer el puerto 80
+# Copia la lógica JS si la separaste
+COPY app.js /usr/share/nginx/html/ 
 EXPOSE 80
-
-# Comando para ejecutar Nginx
 CMD ["nginx", "-g", "daemon off;"]

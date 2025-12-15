@@ -1,12 +1,30 @@
-name: 🚀 Despliegue Automático
+name: 🚀 CI/CD Pipeline Final - Pruebas, Docker y Despliegue
 
 on:
   push:
     branches: [ main ]
 
 jobs:
+  test:
+    name: 🔬 Instalar Dependencias y Ejecutar Pruebas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Descargar Código
+        uses: actions/checkout@v4
+
+      - name: 📦 Instalar Dependencias (Node.js/npm)
+        run: |
+          # Esto simula la instalación. Si tuvieras dependencias reales, se instalarían aquí.
+          echo "Instalando dependencias..."
+          # npm ci  # <-- Descomenta si agregas librerías reales como Jest
+
+      - name: 🧪 Ejecutar Pruebas Unitarias
+        run: npm test  # Esto ejecutará el comando que definiste en package.json
+
   docker:
-    name: 🐳 Construir y Subir a Docker Hub
+    name: 🐳 Construir y Subir Imagen Docker
+    needs: test  # ⚠️ IMPORTANTE: Solo se ejecuta si las pruebas PASAN
     runs-on: ubuntu-latest
 
     steps:
@@ -22,15 +40,17 @@ jobs:
       - name: 🛠️ Construir Imagen Docker
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/hola-mundo-devops:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/hola-mundo-devops:${{ github.sha }} .
+          echo "✅ Construcción completada"
 
       - name: 📤 Subir Imagen a Docker Hub
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/hola-mundo-devops:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/hola-mundo-devops:${{ github.sha }}
+          echo "✅ Imágenes subidas a Docker Hub"
 
   deploy:
-    name: ☁️ Desplegar en Render.com
-    needs: docker
+    name: ☁️ Desplegar en Producción (Render.com)
+    needs: docker  # Solo se ejecuta si Docker se construyó y subió correctamente
     runs-on: ubuntu-latest
 
     steps:
